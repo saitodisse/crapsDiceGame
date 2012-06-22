@@ -16,9 +16,9 @@ function rectangleFilled(model) {
   ctx.fillRect(xFill, yFill, wFill, hFill);
 }
 
-(function(){
-  var ctx = document.getElementById('canvas').getContext('2d');
-  ctx.lineWidth = 2;
+function draw(ctx, lineWidth) {
+  lineWidth = lineWidth || 8;
+  ctx.lineWidth = lineWidth;
   ctx.strokeStyle = "#333";
   ctx.fillStyle = "#99B";
 
@@ -38,6 +38,39 @@ function rectangleFilled(model) {
 //ARC
   ctx.beginPath();
   ctx.strokeStyle = "rgb(200,0,0)";
-  ctx.arc(200, 150, 50, 0, Math.PI, false);
+  ctx.arc(210, 150 + ctx.lineWidth / 2, 110, 0, Math.PI, false);
   ctx.stroke();
+
+//ARC
+  ctx.beginPath();
+  ctx.strokeStyle = "rgb(200,0,0)";
+  ctx.arc(210, 50 - ctx.lineWidth / 2, 10, Math.PI, 0, false);
+  ctx.stroke();
+}
+
+
+//READY
+(function(){
+  var ctx, lineWidth;
+  ctx = document.getElementById('canvas').getContext('2d');
+
+  function update() {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw(ctx, lineWidth);
+  }
+
+  lineWidth = 8;
+  update();
+
+  document.getElementById("btnDecrease").onclick = function(){
+    lineWidth = --lineWidth;
+    update();
+  }
+
+  document.getElementById("btnIncrease").onclick = function(){
+    lineWidth = ++lineWidth;
+    update();
+  }
+
 }());
