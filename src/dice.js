@@ -3,10 +3,9 @@ var createDice = function() {
     self.number = 0;
 
     self.row = function(){
-        var deZeroAcinco = Math.random() * 5;
+        var deZeroAcinco = Math.random() * 6;
         var umAseis = deZeroAcinco + 1;
-        umAseis = Math.floor(umAseis);
-        self.number = umAseis;
+        self.number = Math.floor(umAseis);
     }
 
     return self;

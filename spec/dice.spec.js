@@ -10,6 +10,7 @@ describe("Dice", function(){
 
     it("row() get a number between 1 and 6", function(){
         dice.row();
+        console.log(dice.number);
         expect(dice.number).toBeGreaterThan(0);
         expect(dice.number).toBeLessThan(7);
     });
